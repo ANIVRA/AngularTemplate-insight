@@ -1,0 +1,24 @@
+﻿<div ng-controller="registerController as register" class="container">
+    <div class="col-sm-6 col-sm-offset-3">
+        <form class="form-signin" ng-submit="register.register()">
+            <h2 class="form-signin-heading">{{register.message}}</h2>
+            <label for="userName" class="sr-only">Email address</label>
+            <input type="text" ng-model="register.model.Username" class="form-control" placeholder="Username" required autofocus>
+
+            <label for="inputEmail" class="sr-only">Name</label>
+            <input type="text" ng-model="register.model.Name" class="form-control" placeholder="Name" required>
+
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" ng-model="register.model.Email" class="form-control" placeholder="Email Address" required>
+
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" ng-model="register.model.Password" class="form-control" placeholder="Password" required>
+
+            <label for="inputPassword" class="sr-only">Confirm Password</label>
+            <input type="password" ng-model="register.model.ConfirmPassword" class="form-control" placeholder="Confirm Password" required><br />
+            <span style="color:red;" ng-if="register.model.Password != register.model.ConfirmPassword">The passwords do not match!</span>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="register.model.Password != register.model.ConfirmPassword">Sign in</button>
+        </form>
+    </div>
+</div>

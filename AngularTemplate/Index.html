@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+
+    <style>
+        .moveDown {
+            margin-top: 50px;
+        }
+    </style>
+
+    <script src="Scripts/jquery-2.1.3.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="Scripts/angular-ui-router.min.js"></script>
+    <script src="Scripts/angular-local-storage.min.js"></script>
+
+    <script src="Angular/app.js"></script>
+    <script src="Angular/global/services/authIntercetper.js"></script>
+    <script src="Angular/global/services/authService.js"></script>
+
+    <script src="Angular/global/controllers/menuController.js"></script>
+    <!--Areas-->
+        <!--Dashboard-->
+            <script src="Angular/dashboard/controllers/dashboardController.js"></script>
+        <!--Accounts-->
+            <script src="Angular/account/services/accountService.js"></script>
+
+            <script src="Angular/account/controllers/loginController.js"></script>
+            <script src="Angular/account/controllers/registerController.js"></script>
+</head>
+<body>
+    <div ng-app="app" class="container">
+        <nav class="navbar navbar-default navbar-fixed-top" ng-controller="menuController">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" ui-sref="dashboard">My Project</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li dropdown>
+                            <a class="dropdown-toggle" dropdown-toggle>
+                                About <i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a ui-sref="about.overview">Overview</a></li>
+                                <li><a ui-sref="about.pricing">Pricing</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ng-if="authentication.isAuth" dropdown>
+                            <a class="dropdown-toggle" dropdown-toggle>
+                                Hello {{authentication.username}}<i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a ng-click="logout()">Log Out</a></li>
+                            </ul>
+                        </li>
+                        <li ng-if="!authentication.isAuth" dropdown>
+                            <a class="dropdown-toggle" dropdown-toggle>
+                                Login/Register<i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a ui-sref="login">Login</a></li>
+                                <li><a ui-sref="register">Register</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div ui-view class="moveDown">
+
+        </div>
+    </div>
+</body>
+</html>
